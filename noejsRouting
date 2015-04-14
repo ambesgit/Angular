@@ -1,0 +1,128 @@
+module.exports=function(exp,app,path,fs){
+
+	var router=exp.Router();
+
+//route to the file to be deposited
+	router.post("/register", function(req,res,next){
+		var form=req.body;
+		var pat=form.fname.toString()+form.lname.toString();
+		var str=form.fname.toString()+" "+form.lname.toString();
+
+		fs.exists(path.normalize("c://users//ambes//desktop//chat//"+pat),function(exists){
+			if(exists){
+				//req.pipe(fs.createWriteStream(path.normalize("c://users//ambes//desktop//chat//"+pat+"//"+pat+".txt")));
+
+				fs.appendFile(path.normalize("c://users//ambes//desktop//chat//"+pat+"//"+pat+".txt"),form.file,function(err){
+					if(err){
+						//
+					}
+				});
+			}
+			else{
+				fs.mkdir(path.normalize("c://users//ambes//desktop//chat//"+pat),function(err){
+					if(err){
+						//
+					}					
+				});
+			}
+		});
+res.writeHead(200,{"Content-type":"text/html"});
+res.end();
+	});
+
+//route for the form registration
+router.get("/form",function(req,res,next){
+	res.render("form",{})
+})
+
+//writ data to the file in the specified path by the router
+	router.get("/upload/:name",function(req,res,next){
+		var getName=req.params.name;
+		//var spl=getName.split("/");
+
+		//if the file exists, this will check then append the content 
+
+		fs.exists(path.normalize("c://users//ambes//desktop//chat//"+getName+".txt"), function(exists){
+			if(exists){
+			fs.appendFile(path.normalize("c://users//ambes//desktop//chat//trash.txt"),"ambes"+req.body,function(err){
+				if(err){
+					//
+				}
+			})
+		}
+		//if the file is not exist, this will create the file and write to it
+		else{
+			fs.writeFile(path.normalize("c://users//ambes//desktop//chat//"+getName+".txt"),req.url,function(err){
+				if(err){
+					//to be filled
+				}
+				
+			});
+		}
+		})
+		res.end();
+	});
+
+//this will read a file to the user requesiting the file name can be provided
+	router.get("/file",function(req,res,next){
+		fs.readFile(path.normalize("c://users//ambes//desktop//chat//app.js"),function(err,data){
+			if(err){
+
+				//
+			}
+			else{
+				res.end(data)
+			}
+		})
+	});
+
+//this list array will get the reference to the files array returned from the callback
+	var list=[];
+//send xhr request data
+	router.get("/tracklist",function(req,res,next){
+		fs.readdir(path.normalize("c://users//ambes//desktop//chat//videos"),function(err,files){
+			if(err){
+				//
+			}
+			else{
+				for(var lo=0; lo<files.length; lo++){
+
+				list[lo]={track:files[lo]};
+			}
+			}
+			var npath=path.normalize("c://users//ambes//desktop//chat//"+req.params.name+list.length);
+		fs.mkdir(npath,function(err){
+		if(err){
+
+				//
+		}
+			})
+		res.end(JSON.stringify(list));
+		})
+		
+
+	});
+
+//index router
+	router.get("/",function(req,res,next){
+		res.render("index",{title:"welcome index"});
+
+	});
+
+//index router with params
+	router.get("/:name",function(req,res,next){		
+		res.render("index",{title:"welcome index"});
+		});
+
+//another router 
+	router.get("/chatroom",function(req,res,next){
+		res.render("chatroom",{title:"welcome chat room"})
+	});
+
+router.get("/profile",function(req,res,next){
+		res.render("qrImage.png",{title:"welcome chat room"})
+	});
+
+//default will be used if no match above, this is mounting point for the router to the app
+app.use("/",router);
+}
