@@ -1,0 +1,32 @@
+$(document).ready(function(){
+//data json will be handle by this code
+
+$("body").css("background-color","black")
+$("#tracklist").click(function(){
+$("#ltracklist").load("http://localhost:3030/tracklist",function(responseTxt,statusTxt,xhr){
+	if(statusTxt==="success"){
+
+		var t=JSON.parse(responseTxt);
+		var s="";
+		for(var i=0; i<t.length; i++)
+		{
+
+			s=s+t[i].track+"<br/>";
+		
+	}
+	$("#ltracklist").html(s);
+	}
+
+});	//$(#ltracklist).html("good")
+});
+
+//file will be handl by this code
+$("#ffile").click(function(){
+
+	$("#fdata").load("http://localhost:3030/file",function(responseTxt,statusTxt,xhr){
+		if(statusTxt==="success"){
+		$("#fdata").html(responseTxt);
+	}
+	})
+})
+});
