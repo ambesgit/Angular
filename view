@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>This is test</title>
+<link rel="stylesheet" href="cssfile.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<ambes>this is cool</ambes>
+<head>
+<body>
+	<div class="container">
+	<div class="well">
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Video<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<p>Play video</p>
+	
+<div class="col-lg-8">
+<div class="well" style="border:1px black solid">	
+<video id="myvideo" width="450" height="400" controls autoplay>
+	<source id="mysource"src="madingo_1.mp4" type="video/mp4" >
+  	<!--source src="madingo_1.mp4" type="video/mp4" -->
+
+  <!--source src="movie.ogg" type="video/ogg"-->
+  <track src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
+  <track src="subtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
+Your browser does not support the video tag.
+
+</video>
+</div>
+</div>
+
+<div class="well" >
+<div id="playlist" style="position:relative;left:550;top:100;display:inline-block">
+	<div class="col-md-2">
+	<p id="title" style="display:inline"></p>
+
+  <!--this dropdown will be updated by artist name-->
+	<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="artistName" data-toggle="dropdown" aria-expanded="true">
+      ArtistName
+      <span class="caret"></span>
+    </button>
+	<ul id="lists" class="dropdown-menu" role="menu" aria-labelledby="artistName">
+		<li  style="display:inline">
+			<a  style="display:inline" onclick="track(1)" >Madingo_1</a>
+		</li>
+		<li  style="display:inline">
+			<a style="display:inline" onclick="track(2)" >Madingo_2</a>
+		</li>
+		<li>
+			<a onclick="track(3)" >Madingo_3</a>
+		</li>
+		<li>
+			<a onclick="track(4)" >Madingo_4</a>
+		</li>
+		<li>
+			<a onclick="track(5)" >Madingo_5</a>
+		</li>
+		<li>
+			<a onclick="track(6)" >Madingo_6</a>
+		</li>
+		<li>
+			<a onclick="track(7)">Madingo_7</a>
+		</li>
+		<li>
+			<a onclick="track(8)">Madingo_8</a>
+		</li>
+		<li>
+			<a onclick="track(9)">Madingo_9</a>
+		</li>
+		<li>
+			<a onclick="track(10)">tzita_1</a>
+		</li>
+	</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button id="tracklist">getData</button>
+<button id="ffile">getfile</button>
+	<img src="checkthis.png"/>
+	<img src="MYQRCODE.png"/>
+
+<p>This will be the first line of text in sublime body</p>
+<div ><p id="ltracklist">the data test</p></div>
+<div ><p id="fdata">the file test</p></div>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="media.js"></script>
+<script src="ajax.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</body>
+</htm>
