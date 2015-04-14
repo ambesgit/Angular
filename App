@@ -1,0 +1,31 @@
+
+//backend App
+var exp=require("express"),
+fs=require("fs"),
+multer=require("multer"),
+bodyparser=require("body-parser");
+//var mkd=require("createDir.js"),
+path=require("path");
+var app=exp();
+app.use(multer());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:true}))
+//connect the current directory of the app with the folder that holds the html files
+app.set("views", path.join(__dirname,"views"));
+//assign the rendering engine to the app by passing the file extension and the handler module
+app.engine("html",require("hogan-express"));
+//now update the view engine property of the app by passing the extension of the files
+app.set("view engine","html");
+//load the image in the public folder
+app.use(exp.static(path.join(__dirname, "public")));
+//load the image in the child folder of the public
+app.use(exp.static(path.join(__dirname, "public/profile")));
+//load the css style file from the css folder which is child of chat folder
+app.use(exp.static(path.join(__dirname, "css")));
+app.use(exp.static(path.join(__dirname, "videos")));
+app.use(exp.static(path.join(__dirname, "js")));
+//load the routing code in the file router and immidately call it
+require(path.join(__dirname,"route/router.js"))(exp,app,path,fs);
+//server is listeing on 3030
+app.listen(3030,function(){	
+	console.log("server is running")});
